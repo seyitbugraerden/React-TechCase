@@ -1,0 +1,53 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import './theme.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+  html {
+    @apply overflow-x-hidden;
+  }
+  body {
+    @apply min-h-svh w-full bg-background text-foreground has-[div[data-variant='inset']]:bg-sidebar;
+    background-image:
+      radial-gradient(circle at top, color-mix(in oklch, var(--accent) 82%, transparent) 0, transparent 28%),
+      radial-gradient(circle at 100% 0%, color-mix(in oklch, var(--chart-4) 38%, transparent) 0, transparent 24%),
+      linear-gradient(
+        180deg,
+        color-mix(in oklch, var(--secondary) 80%, white) 0%,
+        transparent 36%
+      ),
+      linear-gradient(
+        120deg,
+        color-mix(in oklch, var(--background) 96%, white) 0%,
+        color-mix(in oklch, var(--accent) 24%, white) 100%
+      );
+  }
+
+  /* Override Radix scroll locking for sticky headers */
+  body[data-scroll-locked] {
+    overflow: unset !important;
+  }
+
+  /* Cursor pointer for buttons */
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+
+  /* Prevent focus zoom on mobile devices */
+  @media screen and (max-width: 767px) {
+    input,
+    select,
+    textarea {
+      font-size: 16px !important;
+    }
+  }
+}
+
