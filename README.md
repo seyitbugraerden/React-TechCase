@@ -54,4 +54,5 @@ npm run lint
 - Bilesenler ayrik dosyalarda organize edildi.
 - Form akisi kapasite ve MOQ kurallarini dikkate alir.
 - UI dili, tech case akisini net gosterecek sekilde sade ve modern bir admin panel yapisina uyarlandi.
+- Kullanılan görsel materyallaer "lorem.picsum" kaynağından sağlanmıştır. Görseller temsili ve anlamsızdır.
 - `npm run build` ve `npm run lint` komutlari basariyla dogrulandi.
