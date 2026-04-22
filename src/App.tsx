@@ -43,6 +43,25 @@ function App() {
     }
   }, [route, selectedManufacturer])
 
+  useEffect(() => {
+    if (route.kind !== 'detail') {
+      return
+    }
+
+    const resetScrollPosition = () => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+      document.documentElement.scrollTop = 0
+      document.body.scrollTop = 0
+    }
+
+    resetScrollPosition()
+    const frameId = window.requestAnimationFrame(resetScrollPosition)
+
+    return () => {
+      window.cancelAnimationFrame(frameId)
+    }
+  }, [route])
+
   const normalizedSearchTerm = deferredSearchTerm.trim().toLocaleLowerCase('tr')
 
   const filteredManufacturers = useMemo(() => {

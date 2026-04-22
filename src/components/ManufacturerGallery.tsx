@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, type MouseEvent } from 'react'
 import {
   ChevronLeft,
   ChevronRight,
@@ -44,6 +44,16 @@ export function ManufacturerGallery({
   function openLightbox(index: number) {
     setActiveIndex(index)
     setIsOpen(true)
+  }
+
+  function closeLightbox() {
+    setIsOpen(false)
+  }
+
+  function handleBackdropClick(event: MouseEvent<HTMLElement>) {
+    if (event.target === event.currentTarget) {
+      closeLightbox()
+    }
   }
 
   function showPrevious() {
@@ -152,9 +162,15 @@ export function ManufacturerGallery({
       </Card>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className='h-[calc(100vh-2rem)] max-w-[calc(100vw-2rem)] overflow-hidden border-0 bg-transparent p-0 text-white shadow-none xl:border-white/10 xl:bg-black/95'>
+        <DialogContent
+          className='h-[calc(100vh-2rem)] max-w-[calc(100vw-2rem)] overflow-hidden border-0 bg-transparent p-0 text-white shadow-none xl:border-white/10 xl:bg-black/95'
+          onClick={handleBackdropClick}
+        >
           <div className='grid h-full gap-0 xl:grid-cols-[minmax(0,1fr)_360px]'>
-            <div className='relative flex h-full flex-col items-center justify-center gap-4 overflow-hidden p-4 sm:min-h-[60vh] sm:gap-0 sm:p-6'>
+            <div
+              className='relative flex h-full flex-col items-center justify-center gap-4 overflow-hidden p-4 sm:min-h-[60vh] sm:gap-0 sm:p-6'
+              onClick={handleBackdropClick}
+            >
               <div className='absolute inset-x-0 top-0 z-10 hidden items-center justify-between px-4 py-4 sm:flex sm:px-6'>
                 <div>
                   <p className='text-xs font-medium tracking-[0.18em] text-white/65 uppercase'>
